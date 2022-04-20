@@ -1,0 +1,8 @@
+<div class="text-center">
+  <img *ngIf="data.status == 'Success'" src="../../../assets/images/popup-success.svg" class="margin-auto popup-icon" />
+  <img *ngIf="data.status == 'Failure'" src="../../../assets/images/popup-failure.svg" class="margin-auto popup-icon" />
+  <h4 class="navy-blue mt-25">{{ data.message }}</h4>
+  <button class="klevr-btn primary-btn mt-25 margin-auto" mat-button (click)="closeDialog()">
+    Back
+  </button>
+</div>

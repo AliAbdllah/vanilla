@@ -1,0 +1,16 @@
+<div class="flex">
+  <div class="mr-10">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      [name]="checkboxName"
+      [required]="required"
+      (change)="onChange($event)"
+    />
+  </div>
+  <div>
+    <span class="light-blue">
+      {{ label }}
+    </span>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<ng-container *ngIf="!invisible">
+  <div [formGroup]="group">
+    <re-captcha
+      formControlName="recaptchaReactive"
+      (resolved)="resolved($event)"
+      siteKey="6LfFmmUaAAAAAOW1ZZhiuw8X910mDr0Ft4PNI_qR"
+    ></re-captcha>
+  </div>
+</ng-container>
+<ng-container *ngIf="invisible">
+  <div [formGroup]="group">
+    <re-captcha
+      #captchaRef="reCaptcha"
+      (resolved)="resolved($event)"
+      errorMode="handled"
+      siteKey="6LeQ14UaAAAAAMipWWgHLBHA28FTl5kPzZzKycFc"
+      size="invisible"
+    ></re-captcha>
+  </div>
+</ng-container>

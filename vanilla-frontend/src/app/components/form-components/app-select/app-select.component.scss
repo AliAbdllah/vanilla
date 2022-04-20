@@ -1,0 +1,51 @@
+@import "../../../../assets/style/colors";
+@import "../../../../assets/style/mixin";
+
+::ng-deep mat-error {
+  margin-left: -1em;
+}
+
+// selected item color
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: gray;
+}
+
+.hide-pannel {
+  display: none;
+}
+
+::ng-deep .mat-form-field {
+  display: block !important;
+}
+
+::ng-deep .mat-select-panel {
+  background-color: white;
+}
+::ng-deep .mat-option {
+  padding-top: 5px;
+}
+
+mat-select {
+  padding-left: 15px;
+  padding-bottom: 5px;
+  font-family: "Avenir";
+  background-color: #fff;
+  padding: 15px;
+  padding-left: 30px;
+  border-radius: 27px;
+  height: 57px;
+  width: 100%;
+  box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 3%);
+}
+
+@include tab-size() {
+  mat-select {
+    height: 55px;
+  }
+}
+
+@include mobile-size() {
+  mat-select {
+    height: 52px;
+  }
+}

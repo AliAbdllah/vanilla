@@ -1,0 +1,24 @@
+@import "../../../../assets/style/colors";
+
+.pl-30 {
+  padding-left: 30px;
+}
+.pt-50 {
+  padding-top: 50px;
+}
+.mr-25 {
+  margin-right: 25px;
+}
+::ng-deep.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+  opacity: 0.5 !important;
+  background-color: get-lax-color(light-blue) !important;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: get-lax-color(light-blue) !important;
+}
+
+::ng-deep.mat-radio-button.mat-accent.mat-radio-checked
+  .mat-radio-outer-circle {
+  border-color: get-lax-color(light-blue) !important;
+}

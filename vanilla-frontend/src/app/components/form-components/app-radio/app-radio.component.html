@@ -1,0 +1,21 @@
+<div
+  [formGroup]="group"
+  class="pl-30 pt-50"
+  fxLayout="column"
+  fxLayoutAlign="center stretch"
+>
+  <mat-radio-group [formControlName]="name">
+    <mat-radio-button
+      class="mr-25"
+      *ngFor="let button of buttons"
+      [value]="button.value"
+      [checked]="button.checked"
+      >{{ button.text }}
+    </mat-radio-button>
+  </mat-radio-group>
+  <mat-error
+    class="radio-error"
+    *ngIf="group?.get(name)?.touched && group.get(name).hasError('required')"
+    >Field is required</mat-error
+  >
+</div>

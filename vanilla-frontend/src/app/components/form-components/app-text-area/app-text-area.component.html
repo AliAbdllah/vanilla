@@ -1,0 +1,55 @@
+<div class="mt-12 mb-20" fxLayout="column" fxLayoutAlign="center stretch">
+  <mat-form-field
+    [formGroup]="group"
+    [appearance]="appearance ? appearance : ''"
+    [ngClass]="{ 'field-ready': group?.get(name)?.touched }"
+  >
+    <p *ngIf="label" class="label">{{ label }}</p>
+    <textarea
+      matInput
+      cdkTextareaAutosize
+      [cdkAutosizeMinRows]="minRows"
+      [cdkAutosizeMaxRows]="maxRows"
+      [name]="name"
+      [formControl]="group.controls[name]"
+      [maxlength]="maxLength"
+      [required]="required"
+      (keydown)="onKeyDown($event)"
+      (keyup)="wordCounter()"
+    >
+    </textarea>
+    <mat-hint
+      *ngIf="countRemainingWords"
+      class="description-hint remaining-words super-dark-gray"
+      >{{ remainingWords }} words remaining.</mat-hint
+    >
+    <mat-hint
+      *ngIf="!countRemainingWords && hint"
+      class="description-hint navy-blue"
+      >{{ hint }}</mat-hint
+    >
+    <mat-error
+      *ngIf="group.get(name).hasError('pattern') && group.get(name).touched"
+    >
+      {{ patternErrorMessage ? patternErrorMessage : "Invalid Pattern" }}
+    </mat-error>
+
+    <mat-error
+      *ngIf="
+        group.get(name).hasError('required') &&
+        requiredErrorMessage &&
+        group.get(name).touched
+      "
+    >
+      {{ requiredErrorMessage }}
+    </mat-error>
+    <mat-error
+      *ngIf="
+        !group.get(name).hasError('pattern') &&
+        group.get(name).hasError('maxlength')
+      "
+    >
+      Field can be maximum {{ maxLengthNumber }} characters long
+    </mat-error>
+  </mat-form-field>
+</div>

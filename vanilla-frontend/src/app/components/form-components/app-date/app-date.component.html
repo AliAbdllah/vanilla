@@ -1,0 +1,66 @@
+<div
+  class="mt-12 mb-20"
+  fxLayout="column"
+  fxLayoutAlign="center stretch"
+  (click)="date.open()"
+>
+  <mat-form-field
+    [formGroup]="group"
+    [appearance]="'fill'"
+    (click)="date.open()"
+    [ngClass]="{
+      'field-ready': !date.opened,
+      'custom-background-color': CustomBackGroundColor,
+      disabled: group.get(name).disabled
+    }"
+  >
+    <input
+      *ngIf="!inputReadonly"
+      readonly
+      matInput
+      dateDirective
+      [matDatepicker]="date"
+      (click)="date.open()"
+      [name]="name"
+      [formControl]="group.controls[name]"
+      [placeholder]="label"
+      [required]="required"
+      [min]="minDate"
+      [max]="maxDate"
+      (dateChange)="onDateChange()"
+    />
+    <input
+      *ngIf="inputReadonly"
+      readonly
+      matInput
+      dateDirective
+      [matDatepicker]="date"
+      (click)="date.open()"
+      [name]="name"
+      [readonly]="inputReadonly"
+      [formControl]="group.controls[name]"
+      [placeholder]="label"
+      [required]="required"
+      [min]="minDate"
+      [max]="maxDate"
+      (dateChange)="onDateChange()"
+    />
+    <!-- <mat-datepicker-toggle [for]="date" matSuffix *ngIf="!inputReadonly">
+      <mat-icon matDatepickerToggleIcon [svgIcon]="'sb-date-picker'"></mat-icon>
+    </mat-datepicker-toggle> -->
+    <mat-datepicker #date startView="year"></mat-datepicker>
+    <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
+
+    <mat-error
+      class="mat-date-error"
+      *ngIf="group.controls[name].hasError('twoDatesError')"
+      >Start date can't be greater than end date
+    </mat-error>
+
+    <mat-error
+      class="mat-date-error"
+      *ngIf="group.controls[name].hasError('greaterThanToday')"
+      >Date can't be greater than today's date
+    </mat-error>
+  </mat-form-field>
+</div>

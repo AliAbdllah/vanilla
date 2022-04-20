@@ -1,0 +1,60 @@
+<div class="input-group">
+  <div class="input-group-prepend">
+    <mat-form-field
+      [formGroup]="group"
+      [appearance]="'fill'"
+      [ngClass]="{ 'field-ready': group?.get(name)?.touched }"
+    >
+      <mat-select
+        [ngClass]="{
+          invalid:
+            (group?.get(name)?.touched &&
+              required &&
+              group.get(name).hasError('required')) ||
+            group.get(name).hasError('pattern')
+        }"
+        (selectionChange)="onCountryCodeChanged($event)"
+        [value]="selectedCountryCode"
+      >
+        <mat-option
+          *ngFor="let country of countryCodes"
+          [value]="country.MobileCode"
+        >
+          {{ country.Name }} {{ country.MobileCode }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <input
+    type="text"
+    matInput
+    class="form-control"
+    aria-label="Text input with dropdown button"
+    (keypress)="validatePhoneNumber($event)"
+    (blur)="onChangePhoneNumber($event)"
+    [attr.maxlength]="15"
+    (paste)="onPaste($event)"
+    [ngClass]="{
+      invalid:
+        (group?.get(name)?.touched &&
+          required &&
+          group.get(name).hasError('required')) ||
+        group.get(name).hasError('pattern')
+    }"
+  />
+</div>
+<mat-error
+  *ngIf="
+    group.get(name).hasError('required') &&
+    requiredErrorMessage &&
+    group.get(name).touched
+  "
+  class="phone-error"
+>
+  {{ requiredErrorMessage }}
+</mat-error>
+
+<mat-error *ngIf="group.get(name).hasError('pattern')">
+  Invalid Phone Number
+</mat-error>

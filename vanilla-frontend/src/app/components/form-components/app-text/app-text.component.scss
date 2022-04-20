@@ -1,0 +1,39 @@
+@import "../../../../assets/style/colors";
+
+::ng-deep .mat-form-field {
+  width: 100%;
+}
+
+.input {
+  padding-left: 15px;
+  padding-bottom: 5px;
+  font-family: "Avenir";
+  background-color: #fff;
+  padding: 15px;
+  padding-left: 30px;
+  border-radius: 27px;
+  box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 3%);
+}
+
+.input::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #d0c9d6;
+}
+.input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #d0c9d6;
+  opacity: 1;
+}
+.input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #d0c9d6;
+  opacity: 1;
+}
+.input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #d0c9d6;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0 !important;
+}

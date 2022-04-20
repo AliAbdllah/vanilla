@@ -1,0 +1,37 @@
+<p class="display-mobile-tab">{{ fileName }}</p>
+<div class="f-box" fxLayout="column" fxLayoutAlign="center stretch">
+  <div class="inputfile-box">
+    <input
+      [formControl]="group.controls[fileControlName]"
+      type="file"
+      id="file"
+      class="inputfile"
+      (change)="onFileChange($event, fileControlName)"
+    />
+    <label for="file">
+      <span
+        [ngClass]="{
+          error:
+            group.controls[fileControlName].hasError('required') &&
+            group.controls[fileControlName].touched
+        }"
+        id="file-name"
+        class="file-box"
+        ><p class="inbox-text">{{ fileName }}</p></span
+      >
+      <span class="file-button klevr-btn primary-btn">
+        <i class="fa fa-upload" aria-hidden="true"></i>
+        UPLOAD
+      </span>
+    </label>
+  </div>
+</div>
+<mat-error
+  *ngIf="
+    group.get(fileControlName).hasError('required') &&
+    requiredErrorMessage &&
+    group.get(fileControlName).touched
+  "
+>
+  {{ requiredErrorMessage }}
+</mat-error>

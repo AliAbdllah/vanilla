@@ -1,0 +1,54 @@
+<div
+  fxLayout="row"
+  class="mt-12 mb-20"
+  fxLayoutAlign="center stretch"
+  fxFill
+  (click)="openedChange($event, true)"
+  *ngIf="group && group.get(name)"
+>
+  <mat-form-field [formGroup]="group" [appearance]="'fill'">
+    <mat-select
+      [formControl]="group.controls[name]"
+      [placeholder]="label"
+      floatlLabel="never"
+      #select
+      disableOptionCentering
+      [required]="required"
+      (focus)="openedChange($event, true)"
+      (selectionChange)="selectionChange($event)"
+    >
+      <ng-container>
+        <ng-container *ngFor="let option of options; let i = index">
+          <mat-option
+            *ngIf="
+              !skipOptions ||
+              (skipOptions && skipOptions.indexOf(option.value) === -1)
+            "
+            [value]="option"
+            [disabled]="option.disabled"
+            [ngClass]="option.columnDisplay ? 'mat-option-text-column' : ''"
+          >
+            <ng-container *ngIf="option.columnDisplay">
+              <div fxLayout="column" fxLayoutGap="2px">
+                <div *ngFor="let text of option.content">{{ text }}</div>
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="!option.columnDisplay">{{
+              option.text
+            }}</ng-container>
+          </mat-option>
+        </ng-container>
+      </ng-container>
+    </mat-select>
+    <mat-error
+      *ngIf="
+        group.get(name).hasError('required') &&
+        requiredErrorMessage &&
+        group.get(name).touched
+      "
+    >
+      {{ requiredErrorMessage }}
+    </mat-error>
+  </mat-form-field>
+</div>
