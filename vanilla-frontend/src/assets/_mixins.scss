@@ -1,0 +1,42 @@
+@mixin tab-size() {
+    @media (max-width: 991px) {
+      @content;
+    }
+  }
+  
+  @mixin mobile-size() {
+    @media (max-width: 765px) {
+      @content;
+    }
+  }
+  
+  @mixin bootstrap-xxlarge() {
+    @media (min-width: 1400px) {
+      @content;
+    }
+  }
+  
+  @mixin bootstrap-xlarge() {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+  
+  @mixin bootstrap-large() {
+    @media (min-width: 992px) {
+      @content;
+    }
+  }
+  
+  @mixin bootstrap-medium() {
+    @media (min-width: 768px) {
+      @content;
+    }
+  }
+  
+  @mixin bootstrap-small() {
+    @media (min-width: 576px) {
+      @content;
+    }
+  }
+  

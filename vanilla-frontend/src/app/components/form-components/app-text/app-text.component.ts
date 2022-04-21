@@ -5,21 +5,20 @@ import {
   Input,
   OnInit,
   Output,
-} from "@angular/core";
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
   FormGroupDirective,
   NgForm,
   Validators,
-} from "@angular/forms";
-import { ErrorStateMatcher } from "@angular/material/core";
-import { MatFormFieldAppearance } from "@angular/material/form-field";
+} from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
-  selector: "app-text",
-  templateUrl: "./app-text.component.html",
-  styleUrls: ["./app-text.component.scss"],
+  selector: 'app-text',
+  templateUrl: './app-text.component.html',
+  styleUrls: ['./app-text.component.scss'],
 })
 export class AppTextComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
@@ -41,15 +40,12 @@ export class AppTextComponent implements OnInit {
   @Input() public patternErrorMessage: string;
   @Input() public requiredErrorMessage: string;
   @Input() public hint: string;
-  @Input() public autoComplete: string;
   @Input() public hasSuffix = false;
-  @Input() public specialInput = false;
   @Input() public readOnly = false;
   @Input() public SpecialCharactersAllowed = true;
-  @Input() public SpecialCharecterNotAllowedOnPaste = false;
   @Input() public isSpaceAllowed = false;
   @Input() public onInputChangeCheck = false;
-  @Input() public width = 90;
+
   @Output()
   public inputChanged: EventEmitter<any> = new EventEmitter<any>();
   constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
@@ -57,7 +53,7 @@ export class AppTextComponent implements OnInit {
     if (this.group) {
       this.group.addControl(
         this.name,
-        new FormControl("", this.required ? Validators.required : null)
+        new FormControl('', this.required ? Validators.required : null)
       );
 
       if (this.isEmail) {
@@ -75,34 +71,7 @@ export class AppTextComponent implements OnInit {
     this.changeDetectorRef.detectChanges();
   }
 
-  public onPaste(event: any): void {
-    if (!this.isEmail) {
-      event.preventDefault();
-    }
-    // if (
-    //   this.onlyNumbersAllowed &&
-    //   this.SpecialCharecterNotAllowedOnPaste &&
-    //   !this.isEmail
-    // ) {
-    //   const regex = new RegExp("^[0-9]*$");
-    //   if (!regex.test(event.clipboardData.getData("Text"))) {
-    //     event.preventDefault();
-    //   } else {
-    //     this.DisplayErrorOnSpecialCharacters(
-    //       event,
-    //       event.clipboardData.getData("Text")
-    //     );
-    //   }
-    // } else if (
-    //   this.SpecialCharecterNotAllowedOnPaste &&
-    //   !this.onlyNumbersAllowed
-    // ) {
-    //   this.DisplayErrorOnSpecialCharacters(
-    //     event,
-    //     event.clipboardData.getData("Text")
-    //   );
-    // }
-  }
+  public onPaste(event: any): void {}
 
   public onKeyUp(event: any): void {
     if (this.onInputChangeCheck) {
@@ -125,19 +94,19 @@ export class AppTextComponent implements OnInit {
     } else if (!this.isEmail) {
       if (this.onlyNumbersAllowed) {
         const keys = [
-          "0",
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "+",
-          "Backspace",
-          "Tab",
+          '0',
+          '1',
+          '2',
+          '3',
+          '4',
+          '5',
+          '6',
+          '7',
+          '8',
+          '9',
+          '+',
+          'Backspace',
+          'Tab',
         ];
         if (keys.indexOf(event.key) < 0) {
           event.preventDefault();
@@ -163,7 +132,7 @@ export class AppTextComponent implements OnInit {
 
   public DisplayErrorOnSpecialCharacters(event: any, key: any): void {
     if (!this.SpecialCharactersAllowed) {
-      const regex = new RegExp("^[a-zA-Z0-9 .]*$");
+      const regex = new RegExp('^[a-zA-Z0-9 .]*$');
       if (!regex.test(key)) {
         if (this.isSpaceAllowed && event.keyCode === 32) {
           return;

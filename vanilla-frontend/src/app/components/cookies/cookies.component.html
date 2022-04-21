@@ -1,0 +1,16 @@
+<div class="cookie-section" *ngIf="showCookies">
+  <div class="container">
+    <div class="content-container">
+      <div class="text">
+        This website uses cookies to identify your recurrent visits, location and preferences, to measure the
+        effectiveness of campaigns and to examine traffic. This information allows us to regularly evolve and improve
+        our online services. By continuing to browse, you give us your consent for the use of cookies. For more
+        information, please visit our <a routerLink="/privacy-notice"> Privacy Notice</a> and <a
+          routerLink="/terms-and-conditions">Terms & Conditions</a>.
+      </div>
+      <div class="btn-container">
+        <button class="klevr-btn primary-btn" (click)="acceptCookies()">I ACCEPT</button>
+      </div>
+    </div>
+  </div>
+</div>

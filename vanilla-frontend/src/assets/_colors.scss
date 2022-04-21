@@ -1,0 +1,6 @@
+$klvr-colors: (
+white: #fff
+);
+@function get-klvr-color($color) {
+  @return map-get($klvr-colors, $color);
+}

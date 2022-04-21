@@ -1,4 +1,4 @@
-<div class="mt-12 mb-20" fxLayout="column" fxLayoutAlign="center stretch">
+<div fxLayout="column" fxLayoutAlign="center stretch">
   <mat-form-field
     [formGroup]="group"
     [appearance]="'fill'"
@@ -12,7 +12,6 @@
     >
     <ng-container>
       <input
-        [ngStyle]="{ width: width + '%' }"
         (paste)="onPaste($event)"
         matInput
         [name]="name"

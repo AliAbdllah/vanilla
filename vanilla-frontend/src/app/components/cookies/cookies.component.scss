@@ -1,0 +1,45 @@
+@import "./../../../assets/style/mixin";
+@import "./../../../assets/style/colors";
+
+.cookie-section {
+  position: sticky;
+  bottom: 0;
+  padding: 25px 0;
+  z-index: 9999;
+  background-color: #fff;
+  box-shadow: 1px 1px 10px 2px rgb(164 182 189 / 31%);
+  .content-container {
+    display: flex;
+    justify-content: space-between;
+    .text {
+      font-size: 14px;
+      line-height: 20px;
+      a {
+        font-size: 14px;
+        line-height: 20px;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+@include tab-size() {
+}
+
+@include mobile-size() {
+  .cookie-section {
+    padding: 15px 0;
+    .content-container {
+      flex-direction: column;
+      .text {
+      }
+      .btn-container {
+        padding-top: 20px;
+        align-self: flex-end;
+      }
+    }
+  }
+}
