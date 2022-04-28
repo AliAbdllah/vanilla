@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_form_components_radio_button_inputs",
+  "info": {
+    "displayName": "RadioButtonInput",
+    "icon": "dot-circle"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
+    },
+    "label": {
+      "type": "string"
+    },
+    "required": {
+      "type": "boolean"
+    },
+    "required_error_message": {
+      "type": "text"
+    },
+    "options": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.options"
+    },
+    "dependantOnInput": {
+      "type": "string"
+    },
+    "condition": {
+      "type": "enumeration",
+      "enum": [
+        "greater_than",
+        "greater_or_equal",
+        "equal",
+        "less_or_equal",
+        "less_than"
+      ]
+    },
+    "condition_value": {
+      "type": "string"
+    }
+  }
+}

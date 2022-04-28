@@ -45,9 +45,7 @@
       [max]="maxDate"
       (dateChange)="onDateChange()"
     />
-    <!-- <mat-datepicker-toggle [for]="date" matSuffix *ngIf="!inputReadonly">
-      <mat-icon matDatepickerToggleIcon [svgIcon]="'sb-date-picker'"></mat-icon>
-    </mat-datepicker-toggle> -->
+
     <mat-datepicker #date startView="year"></mat-datepicker>
     <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
 

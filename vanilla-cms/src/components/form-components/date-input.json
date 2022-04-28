@@ -1,0 +1,50 @@
+{
+  "collectionName": "components_form_components_date_inputs",
+  "info": {
+    "displayName": "DateInput",
+    "icon": "calendar-alt"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer",
+      "required": true
+    },
+    "label": {
+      "type": "string"
+    },
+    "required": {
+      "type": "boolean",
+      "default": true
+    },
+    "required_error_message": {
+      "type": "string",
+      "default": "This field is required"
+    },
+    "minDate": {
+      "type": "date"
+    },
+    "maxDate": {
+      "type": "date"
+    },
+    "dependantOnInput": {
+      "type": "string"
+    },
+    "condition": {
+      "type": "enumeration",
+      "enum": [
+        "greater_than",
+        "greater_or_equal",
+        "equal",
+        "less_or_equal",
+        "less_than"
+      ]
+    },
+    "condition_value": {
+      "type": "string"
+    }
+  }
+}

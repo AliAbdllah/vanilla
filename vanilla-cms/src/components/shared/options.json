@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_shared_options",
+  "info": {
+    "displayName": "Options",
+    "icon": "shopping-cart"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    }
+  }
+}
