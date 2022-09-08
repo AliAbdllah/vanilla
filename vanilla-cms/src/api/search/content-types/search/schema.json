@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "searches",
+  "info": {
+    "singularName": "search",
+    "pluralName": "searches",
+    "displayName": "search"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "controllerName": {
+      "type": "string"
+    },
+    "route": {
+      "type": "string"
+    }
+  }
+}

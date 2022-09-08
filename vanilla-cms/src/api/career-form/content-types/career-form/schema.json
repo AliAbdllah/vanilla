@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "career_forms",
+  "info": {
+    "singularName": "career-form",
+    "pluralName": "career-forms",
+    "displayName": "CareerForm",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Form": {
+      "type": "json"
+    },
+    "CV": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

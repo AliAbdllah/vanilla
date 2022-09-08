@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "email_recipients",
+  "info": {
+    "singularName": "email-recipient",
+    "pluralName": "email-recipients",
+    "displayName": "email-recipient",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "key": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "emails": {
+      "type": "text",
+      "regex": "^([\\w+-.%]+@[\\w.-]+\\.[A-Za-z]{2,4})(,[\\w+-.%]+@[\\w.-]+\\.[A-Za-z]{2,4})*$",
+      "required": true
+    }
+  }
+}
