@@ -1,32 +1,74 @@
-@import "./../../../../assets/style/mixin";
+@import "../../../../assets/style/mixins";
 @import "./../../../../assets/style/colors";
+
+mat-form-field {
+  padding-left: 12px;
+  width: 99%;
+}
+
 textarea {
   background-color: white;
-  border-radius: 10px;
+  border-radius: 20px;
   padding: 20px !important;
-  box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 3%);
+  border: 1px solid #C7CDCE;
 }
+.invalid{
+  border: 2px solid #bf264e;
+}
+
+:host ::ng-deep .mat-error{
+  margin-top: 1.5em !important;
+}
+
 .remaining-words {
+  font-family: 'SenRegular';
+  color: #C7CDCE;
   margin-top: 15px;
-  font-size: 18px;
+  font-size: 15px;
   margin-left: 15px;
 }
 
 .label {
   /* WebKit, Blink, Edge */
   color: #d0c9d6;
-  margin-bottom: 10px !important;
+  font-family: 'SenRegular';
+  padding-top: 12px;
+
 }
+
 .pl-30 {
   padding-left: 30px;
 }
+
+::ng-deep .mat-form-field-label-wrapper {
+  .mat-form-field-label {
+    color: #d0c9d6;
+    padding-top: 5px;
+    padding-left: 30px;
+    font-family: 'SenRegular';
+    padding-top: 12px;
+  }
+}
+
+
+
+::ng-deep .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, body .mat-form-field-appearance-legacy.mat-form-field-can-float .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label {
+  transform: translateY(-2em) scale(0.75) perspective(100px) translateZ(0.001px) !important;
+  width: 133.3333333333%;
+}
+
 @include tab-size() {
   .remaining-words {
     margin-top: 12px;
     font-size: 15px;
   }
 }
+
 @include mobile-size() {
+  mat-form-field {
+    width: 96%;
+  }
+
   .remaining-words {
     margin-top: 12px;
     font-size: 15px;

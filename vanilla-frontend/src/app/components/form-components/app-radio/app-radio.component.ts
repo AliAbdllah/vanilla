@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
 @Component({
   selector: "app-radio",
   templateUrl: "./app-radio.component.html",
@@ -10,7 +10,7 @@ export class AppRadioComponent implements OnInit {
   @Input() public value: string;
   @Input() public required: boolean;
   @Input() public disabled: boolean = false;
-  @Input() public group: FormGroup;
+  @Input() public group: UntypedFormGroup;
   @Input() public name: string;
   @Input() public icon: string;
   @Input() public svgIcon: string;
@@ -23,7 +23,7 @@ export class AppRadioComponent implements OnInit {
     if (this.group) {
       this.group.addControl(
         this.name,
-        new FormControl("", Validators.required)
+        new UntypedFormControl("", Validators.required)
       );
       if (this.disabled) {
         this.group.get(this.name).disable();

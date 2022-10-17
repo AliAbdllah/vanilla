@@ -1,7 +1,8 @@
-@import "../../../../assets/style/colors";
+@import "../../../../assets/style/mixins";
 
 ::ng-deep .mat-form-field {
   width: 100%;
+  max-width: 100%;
 }
 
 .input {
@@ -12,8 +13,14 @@
   padding: 15px;
   padding-left: 30px;
   border-radius: 27px;
-  box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 3%);
+ border: 1px solid #C7CDCE;
+  width: 100%;
+  height: 60px;
 }
+.invalid {
+  border: 2px solid #bf264e;
+}
+
 
 .input::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
@@ -36,4 +43,19 @@
 
 ::ng-deep .mat-form-field-wrapper {
   padding-bottom: 0 !important;
+}
+
+::ng-deep  .mat-input-element{
+box-sizing: inherit !important;
+}
+@include tab-size() {
+  .input {
+    height: 55px;
+  }
+}
+
+@include mobile-size() {
+  .input {
+    height: 52px;
+  }
 }

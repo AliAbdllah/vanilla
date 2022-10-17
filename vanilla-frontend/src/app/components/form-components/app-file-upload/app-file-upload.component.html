@@ -1,12 +1,11 @@
-<p class="display-mobile-tab">{{ fileName }}</p>
 <div class="f-box" fxLayout="column" fxLayoutAlign="center stretch">
   <div class="inputfile-box">
     <input
-      [formControl]="group.controls[fileControlName]"
       type="file"
       id="file"
       class="inputfile"
       (change)="onFileChange($event, fileControlName)"
+      [accept]="accepts"
     />
     <label for="file">
       <span

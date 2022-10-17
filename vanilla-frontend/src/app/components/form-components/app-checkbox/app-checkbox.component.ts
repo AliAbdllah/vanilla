@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { FormControl, Validators } from "@angular/forms";
+import { UntypedFormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-checkbox",
@@ -22,7 +22,7 @@ export class AppCheckboxComponent implements OnInit {
       if (!this.group.get(this.name)) {
         this.group.addControl(
           this.name,
-          new FormControl([], this.required ? Validators.required : null)
+          new UntypedFormControl([], this.required ? Validators.required : null)
         );
       }
     }

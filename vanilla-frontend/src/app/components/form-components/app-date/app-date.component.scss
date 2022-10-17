@@ -6,12 +6,17 @@
   padding: 15px;
   padding-left: 30px;
   border-radius: 27px;
-  width: 90%;
-  box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 3%);
+  border: 1px solid #C7CDCE;
+  height: 60px;
+}
+.invalid {
+  border: 2px solid #bf264e;
 }
 
 ::ng-deep .mat-datepicker-content .mat-calendar {
   background-color: #fff;
+  border: 1px #C7CDCE  solid;
+  border-radius: 30px !important;
 }
 .input::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */

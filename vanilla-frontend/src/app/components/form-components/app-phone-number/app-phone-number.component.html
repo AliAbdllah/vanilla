@@ -14,12 +14,12 @@
             group.get(name).hasError('pattern')
         }"
         (selectionChange)="onCountryCodeChanged($event)"
-        [value]="selectedCountryCode"
+        #select
       >
-        <mat-option
-          *ngFor="let country of countryCodes"
-          [value]="country.MobileCode"
-        >
+        <mat-select-trigger>
+          {{ select.value?.MobileCode }}
+        </mat-select-trigger>
+        <mat-option *ngFor="let country of countryCodes" [value]="country">
           {{ country.Name }} {{ country.MobileCode }}</mat-option
         >
       </mat-select>
@@ -29,12 +29,14 @@
   <input
     type="text"
     matInput
+    #phoneInput
     class="form-control"
     aria-label="Text input with dropdown button"
     (keypress)="validatePhoneNumber($event)"
     (blur)="onChangePhoneNumber($event)"
     [attr.maxlength]="15"
     (paste)="onPaste($event)"
+    placeholder="76 123 456"
     [ngClass]="{
       invalid:
         (group?.get(name)?.touched &&
@@ -55,6 +57,6 @@
   {{ requiredErrorMessage }}
 </mat-error>
 
-<mat-error *ngIf="group.get(name).hasError('pattern')">
+<mat-error *ngIf="group.get(name).hasError('pattern')" class="phone-error">
   Invalid Phone Number
 </mat-error>

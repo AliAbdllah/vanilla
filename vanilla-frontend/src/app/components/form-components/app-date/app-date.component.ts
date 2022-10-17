@@ -1,29 +1,34 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import {
   MomentDateAdapter,
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
-} from "@angular/material-moment-adapter";
+} from '@angular/material-moment-adapter';
 import {
   DateAdapter,
   MAT_DATE_FORMATS,
   MAT_DATE_LOCALE,
-} from "@angular/material/core";
-import * as _moment from "moment";
+} from '@angular/material/core';
+import * as _moment from 'moment';
+import { Observable, Subscription } from 'rxjs';
 
 export const DateFormat = {
   display: {
-    dateInput: "MM/DD/YYYY",
-    monthYearLabel: "MMMM YYYY",
-    dateA11yLabel: "MM/DD/YYYY",
-    monthYearA11yLabel: "MMMM YYYY",
+    dateInput: 'MM/DD/YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'MM/DD/YYYY',
+    monthYearA11yLabel: 'MMMM YYYY',
   },
 };
 
 @Component({
-  selector: "app-date",
-  templateUrl: "./app-date.component.html",
-  styleUrls: ["./app-date.component.scss"],
+  selector: 'app-date',
+  templateUrl: './app-date.component.html',
+  styleUrls: ['./app-date.component.scss'],
   providers: [
     {
       provide: DateAdapter,
@@ -39,25 +44,29 @@ export class AppDateComponent implements OnInit {
   @Input() public type: string;
   @Input() public value: string;
   @Input() public required: boolean;
-  @Input() public group: FormGroup;
+  @Input() public group: UntypedFormGroup;
   @Input() public name: string;
   @Input() public disabled: boolean = false;
   @Input() public icon: string;
   @Input() public svgIcon: string;
   @Input() public patternErrorMessage: string;
   @Input() public hint: string;
-  @Input() public maxDate: string;
+  @Input() public maxDate;
+  @Input() public minDate;
   @Input() public forceEnable: boolean;
   @Input() public inputReadonly = false;
-  @Input() public minDate: string;
   @Input() public requiredErrorMessage;
   @Output()
   public changeEmitter: EventEmitter<any> = new EventEmitter<any>();
+  public isControlTouched: boolean = false;
+  @Input() resetEvent: Observable<void>;
+  private eventsSubscription: Subscription;
+
   public ngOnInit(): void {
     if (this.group) {
       this.group.addControl(
         this.name,
-        new FormControl("", this.required ? Validators.required : null)
+        new UntypedFormControl('', this.required ? Validators.required : null)
       );
     }
     this.group.get(this.name).enable();
@@ -65,8 +74,18 @@ export class AppDateComponent implements OnInit {
     if (this.disabled) {
       this.group.get(this.name).disable();
     }
+    this.eventsSubscription = this.resetEvent.subscribe(() => {
+      this.isControlTouched = false;
+    });
   }
   public onDateChange(): void {
     this.changeEmitter.emit();
+  }
+
+  onClose() {
+    this.isControlTouched = true;
+  }
+  ngOnDestroy() {
+    this.eventsSubscription.unsubscribe();
   }
 }

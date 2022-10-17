@@ -7,8 +7,8 @@ import {
   Output,
 } from '@angular/core';
 import {
-  FormControl,
-  FormGroup,
+  UntypedFormControl,
+  UntypedFormGroup,
   FormGroupDirective,
   NgForm,
   Validators,
@@ -30,7 +30,7 @@ export class AppTextComponent implements OnInit {
   @Input() public onlyNumbersAllowed = false;
   @Input() public required: boolean;
   @Input() public disabled: boolean;
-  @Input() public group: FormGroup;
+  @Input() public group: UntypedFormGroup;
   @Input() public name: string;
   @Input() public isEmail: boolean;
   @Input() public maxLength: number;
@@ -43,6 +43,7 @@ export class AppTextComponent implements OnInit {
   @Input() public hasSuffix = false;
   @Input() public readOnly = false;
   @Input() public SpecialCharactersAllowed = true;
+  @Input() public isNumbersAllowed = true;
   @Input() public isSpaceAllowed = false;
   @Input() public onInputChangeCheck = false;
 
@@ -53,14 +54,16 @@ export class AppTextComponent implements OnInit {
     if (this.group) {
       this.group.addControl(
         this.name,
-        new FormControl('', this.required ? Validators.required : null)
+        new UntypedFormControl('', this.required ? Validators.required : null)
       );
 
       if (this.isEmail) {
-        this.group.get(this.name).setValidators([
-          // Validators.email,
-          Validators.pattern(/\S+@\S+\.\S+/),
-        ]);
+        this.group
+          .get(this.name)
+          .setValidators([
+            Validators.email,
+            Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+          ]);
       }
     }
     if (this.disabled) {
@@ -132,15 +135,27 @@ export class AppTextComponent implements OnInit {
 
   public DisplayErrorOnSpecialCharacters(event: any, key: any): void {
     if (!this.SpecialCharactersAllowed) {
-      const regex = new RegExp('^[a-zA-Z0-9 .]*$');
-      if (!regex.test(key)) {
-        if (this.isSpaceAllowed && event.keyCode === 32) {
-          return;
-        } else {
-          event.preventDefault();
+      if (!this.isNumbersAllowed) {
+        const regex = new RegExp('^[a-zA-Z .]*$');
+        if (!regex.test(key)) {
+          if (this.isSpaceAllowed && event.keyCode === 32) {
+            return;
+          } else {
+            event.preventDefault();
+          }
         }
+        return;
+      } else {
+        const regex = new RegExp('^[a-zA-Z0-9 .]*$');
+        if (!regex.test(key)) {
+          if (this.isSpaceAllowed && event.keyCode === 32) {
+            return;
+          } else {
+            event.preventDefault();
+          }
+        }
+        return;
       }
-      return;
     }
   }
 }
@@ -148,7 +163,7 @@ export class AppTextComponent implements OnInit {
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
-    control: FormControl | null,
+    control: UntypedFormControl | null,
     form: FormGroupDirective | NgForm | null
   ): boolean {
     const isSubmitted = form && form.submitted;

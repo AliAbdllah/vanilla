@@ -1,9 +1,7 @@
 @import "../../../../assets/style/colors";
-@import "../../../../assets/style/mixin";
+@import "../../../../assets/style/mixins";
 
-::ng-deep mat-error {
-  margin-left: -1em;
-}
+
 
 // selected item color
 ::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
@@ -20,9 +18,15 @@
 
 ::ng-deep .mat-select-panel {
   background-color: white;
+  border: 1px #C7CDCE  solid;
+  border-radius: 30px !important;
 }
 ::ng-deep .mat-option {
-  padding-top: 5px;
+  padding-top: 10px;
+
+}
+::ng-deep .mat-select-arrow-wrapper {
+  margin-top: 25px;
 }
 
 mat-select {
@@ -32,12 +36,15 @@ mat-select {
   background-color: #fff;
   padding: 15px;
   padding-left: 30px;
+  padding-top: 20px;
   border-radius: 27px;
-  height: 57px;
+  height: 60px;
   width: 100%;
-  box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 3%);
+  border: 1px solid #C7CDCE;
 }
-
+.invalid {
+  border: 2px solid #bf264e;
+}
 @include tab-size() {
   mat-select {
     height: 55px;
@@ -48,4 +55,8 @@ mat-select {
   mat-select {
     height: 52px;
   }
+  ::ng-deep .mat-select-arrow-wrapper {
+    margin-top: 20px;
+  }
+  
 }

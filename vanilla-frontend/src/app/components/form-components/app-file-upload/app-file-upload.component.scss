@@ -1,4 +1,4 @@
-@import "../../../../assets/style/mixin";
+@import "../../../../assets/style/mixins";
 .inputfile-box {
   position: relative;
 }
@@ -15,28 +15,35 @@
 }
 label {
   width: 100%;
+  color: #C7CDCE;
 }
 ::ng-deep .mat-form-field-flex {
   padding: 0.75em 0.75em 0 0.75em;
 }
 .inbox-text {
   font-size: 15px;
+  font-family: 'SenRegular';
+  margin-top: 2px;
 }
 .file-box {
   display: inline-block;
   width: 96% !important;
-  box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 3%);
+  border: 1px solid #C7CDCE;
   padding: 15px 0px 0px 30px;
   box-sizing: border-box;
   height: 60px;
   border-bottom-left-radius: 27px;
   border-top-left-radius: 27px;
   background-color: #fff;
+ 
+}
+
+.primary-btn{
+  height: 60px ;
 }
 
 .file-button {
-  border-bottom-left-radius: 0px;
-  border-top-left-radius: 0px;
+
   position: absolute;
   top: 0px;
   right: 0px;
@@ -49,11 +56,9 @@ label {
 }
 @include tab-size() {
   .file-box {
-    height: 47px;
+    height: 60px;
   }
-  .inbox-text {
-    display: none;
-  }
+
   .display-mobile-tab {
     display: block;
     padding: 20px;
@@ -63,11 +68,9 @@ label {
 @include mobile-size() {
   .file-box {
     width: 91% !important;
-    height: 47px;
+    height: 60px;
   }
-  .inbox-text {
-    display: none;
-  }
+
   .file-button {
     width: 90px;
   }
@@ -77,4 +80,13 @@ label {
     padding: 20px;
     padding-bottom: 0px;
   }
+
+.primary-btn{
+  border-radius: 30px;
+  font-size: 18px;
+  line-height: 29px;
+  letter-spacing: 0.5px;
+  min-width: 130px;
+  min-height: 45px;
+}
 }

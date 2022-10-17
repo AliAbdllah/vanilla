@@ -1,5 +1,10 @@
 @import "../../../../assets/style/colors";
-@import "../../../../assets/style/mixin";
+@import "../../../../assets/style/mixins";
+.input-group {
+  position: relative;
+  width: 100%;
+}
+
 input {
   padding-left: 15px;
   padding-bottom: 5px;
@@ -8,20 +13,35 @@ input {
   padding-left: 30px;
   border-radius: 27px;
   width: 90%;
-  box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 3%);
-  margin-top: 37px !important;
-  height: 54.5px;
+  border: 1px solid #C7CDCE;
+  border-left: none;
+  margin-top:30px !important;
+  height: 60px;
+}
+
+input:focus {
+  outline:none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  border: 1px solid #C7CDCE;
 }
 mat-select {
-  height: 100%;
-  background-color: #e5e5e5;
+  height:60px;
+  background-color: #fff;
   border-bottom-left-radius: 27px;
   border-top-left-radius: 27px;
   padding: 15px;
-  box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 3%);
+  border: 1px solid #C7CDCE;
+  padding-left: 30px;
+    padding-top: 20px;
 }
+
 .phone-error {
-  margin-left: 36px;
+  margin-left: 28px;
+  margin-bottom: -45px !important;
+  margin-top: 20px !important;
 }
 :host ::ng-deep {
   .mat-select-min-line {
@@ -40,28 +60,24 @@ mat-select {
   padding-right: 0px !important;
 }
 
-.input-group {
-  width: 98%;
-}
-
 .invalid {
   border: 2px solid #bf264e;
 }
-::ng-deep .mat-error {
-  margin-top: 1em !important;
-  margin-left: 1em;
-  color: #bf264e;
-}
+
 @include tab-size() {
+  mat-select{
+    margin-top: 3px;
+  }
   input {
     margin-top: 33px !important;
-    height: 51.32px !important;
+    height:60px !important;
   }
   .input-group {
     width: 100%;
   }
   mat-select.invalid {
     height: 60px !important;
+    
   }
 
   .phone-error {
@@ -71,25 +87,17 @@ mat-select {
 
 @include mobile-size() {
   input {
-    margin-top: 29px !important;
-    height: 48.5px !important;
+    margin-top: 30px !important;
+    height: 60px !important;
     padding-bottom: 0px !important;
-  }
-  mat-select {
-    height: 48px;
   }
   .input-group-prepend {
     width: 38%;
   }
   .input-group {
-    width: 113%;
+    width:100%;
   }
-  input .invalid {
-    height: 48.5px !important;
-  }
-  mat-select.invalid {
-    height: 52px !important;
-  }
+
   .phone-error {
     margin-left: 29px;
   }

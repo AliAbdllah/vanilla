@@ -15,6 +15,13 @@
       [required]="required"
       (focus)="openedChange($event, true)"
       (selectionChange)="selectionChange($event)"
+      [ngClass]="{
+        invalid:
+          (group?.get(name)?.touched &&
+            required &&
+            group.get(name).hasError('required')) ||
+          group.get(name).hasError('pattern')
+      }"
     >
       <ng-container>
         <ng-container *ngFor="let option of options; let i = index">

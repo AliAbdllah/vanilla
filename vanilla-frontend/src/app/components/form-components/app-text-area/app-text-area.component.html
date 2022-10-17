@@ -4,7 +4,6 @@
     [appearance]="appearance ? appearance : ''"
     [ngClass]="{ 'field-ready': group?.get(name)?.touched }"
   >
-    <p *ngIf="label" class="label">{{ label }}</p>
     <textarea
       matInput
       cdkTextareaAutosize
@@ -16,6 +15,14 @@
       [required]="required"
       (keydown)="onKeyDown($event)"
       (keyup)="wordCounter()"
+      [placeholder]="label"
+      class="textarea"
+      [ngClass]="{
+        invalid:
+          group?.get(name)?.touched &&
+          required &&
+          group.get(name).hasError('required')
+      }"
     >
     </textarea>
     <mat-hint

@@ -1,0 +1,33 @@
+{
+  "kind": "singleType",
+  "collectionName": "klevrs",
+  "info": {
+    "singularName": "klevr",
+    "pluralName": "klevrs",
+    "displayName": "@Klevr",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "HermesURL": {
+      "type": "string"
+    },
+    "FileStorge": {
+      "type": "enumeration",
+      "enum": [
+        "Local",
+        "Cloudinary",
+        "Amazon S3"
+      ]
+    },
+    "DatabaseSSL": {
+      "type": "boolean"
+    },
+    "DatabaseBackupURL": {
+      "type": "string"
+    }
+  }
+}

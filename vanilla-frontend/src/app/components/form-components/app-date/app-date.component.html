@@ -28,6 +28,10 @@
       [min]="minDate"
       [max]="maxDate"
       (dateChange)="onDateChange()"
+      [ngClass]="{
+        invalid:
+          isControlTouched && required && group.get(name).hasError('required')
+      }"
     />
     <input
       *ngIf="inputReadonly"
@@ -44,10 +48,28 @@
       [min]="minDate"
       [max]="maxDate"
       (dateChange)="onDateChange()"
+      [ngClass]="{
+        invalid:
+          isControlTouched && required && group.get(name).hasError('required')
+      }"
     />
 
-    <mat-datepicker #date startView="year"></mat-datepicker>
+    <mat-datepicker
+      #date
+      startView="year"
+      (closed)="onClose()"
+    ></mat-datepicker>
     <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
+
+    <mat-error
+      *ngIf="
+        group.get(name).hasError('required') &&
+        requiredErrorMessage &&
+        isControlTouched
+      "
+    >
+      {{ requiredErrorMessage }}
+    </mat-error>
 
     <mat-error
       class="mat-date-error"

@@ -1,18 +1,22 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Component, Input, OnInit } from '@angular/core';
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
-  selector: "app-text-area",
-  templateUrl: "./app-text-area.component.html",
-  styleUrls: ["./app-text-area.component.scss"],
+  selector: 'app-text-area',
+  templateUrl: './app-text-area.component.html',
+  styleUrls: ['./app-text-area.component.scss'],
 })
 export class AppTextAreaComponent implements OnInit {
-  @Input() public label = "";
+  @Input() public label = '';
   @Input() public value: string;
   @Input() public required: boolean;
   @Input() public disabled: boolean;
   @Input() public numberOfLettersAllowed: number;
-  @Input() public group: FormGroup;
+  @Input() public group: UntypedFormGroup;
   @Input() public name: string;
   @Input() public icon: string;
   @Input() public svgIcon: string;
@@ -29,7 +33,7 @@ export class AppTextAreaComponent implements OnInit {
     if (this.group) {
       this.group.addControl(
         this.name,
-        new FormControl("", this.required ? Validators.required : null)
+        new UntypedFormControl('', this.required ? Validators.required : null)
       );
     }
     if (this.disabled) {
@@ -43,7 +47,7 @@ export class AppTextAreaComponent implements OnInit {
             newVal
               .split(/\s+/)
               .slice(0, this, this.countRemainingWords)
-              .join(" ")
+              .join(' ')
           );
         }
       });
@@ -58,36 +62,10 @@ export class AppTextAreaComponent implements OnInit {
     if (this.remainingWords <= 0) {
       this.remainingWords = 0;
       const original = this.group.controls[this.name].value.split(/\s+/);
-      const newWords = original.slice(0, this.countRemainingWords).join(" ");
+      const newWords = original.slice(0, this.countRemainingWords).join(' ');
       this.group.controls[this.name].setValue(newWords);
     }
   }
-
-  // onPaste(event: ClipboardEvent) {
-  //   let clipboardData = event.clipboardData;
-  //   console.log("HI", event.clipboardData.getData("text").split(" ").length);
-  //   if (
-  //     this.remainingWords <
-  //     event.clipboardData.getData("text").split(" ").length
-  //   ) {
-  //     event.preventDefault();
-  //     console.log(
-  //       event.clipboardData
-  //         .getData("text")
-  //         .split(" ")
-  //         .slice(0, this.remainingWords)
-  //         .join(" ")
-  //     );
-  //     this.group.controls[this.name].setValue(
-  //       this.group.controls[this.name].value +
-  //         event.clipboardData
-  //           .getData("text")
-  //           .split(" ")
-  //           .slice(0, this.remainingWords)
-  //           .join(" ")
-  //     );
-  //   }
-  // }
 
   public onKeyDown(event: any): void {
     if (
@@ -96,7 +74,7 @@ export class AppTextAreaComponent implements OnInit {
       String(this.group.get(this.name).value).length >
         this.numberOfLettersAllowed
     ) {
-      const keys = ["Backspace"];
+      const keys = ['Backspace'];
       if (keys.indexOf(event.key) < 0) {
         event.preventDefault();
         event.stopPropagation();

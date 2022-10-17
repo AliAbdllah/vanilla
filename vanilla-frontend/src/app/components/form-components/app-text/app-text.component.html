@@ -10,23 +10,36 @@
       [svgIcon]="svgIcon"
       >{{ icon }}</mat-icon
     >
-    <ng-container>
-      <input
-        (paste)="onPaste($event)"
-        matInput
-        [name]="name"
-        [formControl]="group.controls[name]"
-        [placeholder]="label"
-        [required]="required"
-        [id]="id"
-        [maxlength]="maxLength"
-        type="text"
-        autocomplete="off"
-        (keyup)="onKeyUp($event)"
-        (keydown)="onKeyDown($event)"
-        class="input"
-      />
-    </ng-container>
+
+    <input
+      (paste)="onPaste($event)"
+      fxFlex.xs="100"
+      fxFlex.gt-sm="nogrow"
+      matInput
+      [name]="name"
+      [formControl]="group.controls[name]"
+      [placeholder]="label"
+      [required]="required"
+      [maxlength]="maxLength"
+      type="text"
+      autocomplete="off"
+      (keyup)="onKeyUp($event)"
+      (keydown)="onKeyDown($event)"
+      class="input"
+      [ngClass]="{
+        invalid:
+          (group?.get(name)?.touched &&
+            required &&
+            group.get(name).hasError('required')) ||
+          (group?.get(name)?.touched &&
+            required &&
+            group.get(name).hasError('email')) ||
+          (group?.get(name)?.touched &&
+            required &&
+            group.get(name).hasError('pattern'))
+      }"
+    />
+
     <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
     <mat-error
       *ngIf="group.get(name).hasError('pattern') && group.get(name).touched"
@@ -51,8 +64,5 @@
     >
       Field can be maximum {{ maxLengthNumber }} characters long
     </mat-error>
-    <mat-error *ngIf="group.get(name).hasError('email')"
-      >Invalid email address</mat-error
-    >
   </mat-form-field>
 </div>

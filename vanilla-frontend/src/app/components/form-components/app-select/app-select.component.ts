@@ -8,14 +8,14 @@ import {
   OnInit,
   Output,
   ViewChild,
-} from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { MatSelect } from "@angular/material/select";
+} from '@angular/core';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { MatSelect } from '@angular/material/select';
 
 @Component({
-  selector: "app-select",
-  templateUrl: "./app-select.component.html",
-  styleUrls: ["./app-select.component.scss"],
+  selector: 'app-select',
+  templateUrl: './app-select.component.html',
+  styleUrls: ['./app-select.component.scss'],
 })
 export class AppSelectComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public label: string;
@@ -25,7 +25,7 @@ export class AppSelectComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public withoutArrow = false;
   @Input() public disabled: boolean;
   @Input() public required: boolean;
-  @Input() public group: FormGroup;
+  @Input() public group: UntypedFormGroup;
   @Input() public name: string;
   @Input() public options: any[];
   @Input() public selectedOption: any;
@@ -38,7 +38,7 @@ export class AppSelectComponent implements OnInit, OnChanges, OnDestroy {
   public id = new Date().getTime();
   public initials: string;
   public focused: boolean;
-  @ViewChild("select") public select: MatSelect;
+  @ViewChild('select') public select: MatSelect;
   @Output()
   public eventEmitter: EventEmitter<Record<string, unknown>> = new EventEmitter<
     Record<string, unknown>
@@ -56,7 +56,7 @@ export class AppSelectComponent implements OnInit, OnChanges, OnDestroy {
     if (this.group) {
       this.group.addControl(
         this.name,
-        new FormControl("", Validators.required)
+        new UntypedFormControl('', Validators.required)
       );
 
       if (this.disabled) {
@@ -75,7 +75,7 @@ export class AppSelectComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public ngOnChanges(changes: any): void {
-    if ("options" in changes || "disabled" in changes) {
+    if ('options' in changes || 'disabled' in changes) {
       this.selectInitialValues();
       if (changes?.disabled?.currentValue) {
         this.group.get(this.name)?.disable();
@@ -104,7 +104,7 @@ export class AppSelectComponent implements OnInit, OnChanges, OnDestroy {
   public selectionChange(event: any): void {
     this.eventEmitter.emit({
       name: this.name,
-      text: event.value.text ? event.value.text : "",
+      text: event.value.text ? event.value.text : '',
       value: event.value.value,
       data: event.value.data,
       selectionChange: true,
@@ -114,7 +114,7 @@ export class AppSelectComponent implements OnInit, OnChanges, OnDestroy {
   public selectInitialValues(): void {
     if (
       this.group?.get(this.name)?.value &&
-      typeof this.group.get(this.name).value === "string"
+      typeof this.group.get(this.name).value === 'string'
     ) {
       for (const option of this.options) {
         if (option.value === this.group.get(this.name).value) {
@@ -147,9 +147,9 @@ export class AppSelectComponent implements OnInit, OnChanges, OnDestroy {
     this.options = filterd;
   }
   public createInititals(name: string): string {
-    let initials = "";
+    let initials = '';
     for (let i = 0; i < name.length; i++) {
-      if (name.charAt(i) === " ") {
+      if (name.charAt(i) === ' ') {
         continue;
       }
       if (name.charAt(i) === name.charAt(i).toUpperCase()) {
@@ -159,7 +159,7 @@ export class AppSelectComponent implements OnInit, OnChanges, OnDestroy {
         }
       }
     }
-    if (initials === "") {
+    if (initials === '') {
       return name.charAt(0);
     }
     return initials;

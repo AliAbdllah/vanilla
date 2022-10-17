@@ -16,7 +16,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AppPhoneNumberComponent } from './app-phone-number/app-phone-number.component';
 import { AppCheckboxComponent } from './app-checkbox/app-checkbox.component';
 import { AppFileUploadComponent } from './app-file-upload/app-file-upload.component';
-import { InternationalPhoneNumberModule } from 'ngx-international-phone-number';
 const formComponents = [
   AppTextComponent,
   AppSelectComponent,
@@ -39,8 +38,7 @@ const formComponents = [
     MatInputModule,
     MatRadioModule,
     MatDatepickerModule,
-    MatNativeDateModule,
-    InternationalPhoneNumberModule,
+    MatNativeDateModule
   ],
   providers: [MatDatepickerModule],
   exports: formComponents,

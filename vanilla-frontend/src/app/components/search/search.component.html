@@ -1,0 +1,61 @@
+<div class="container">
+  <section class="search">
+    <div class="row mb-4 mt-4">
+      <div class="form-group col-md-12">
+        <input
+          type="email"
+          placeholder="What're you searching for?"
+          class="form-control form-control-underlined"
+          [formControl]="searchQuery"
+          [ngClass]="{ 'control-search': searchQuery?.value?.length > 0 }"
+        />
+        <div class="x-container" (click)="closeSearch()">
+          <img src="assets/images/x-icon.png" class="x-icon" />
+        </div>
+      </div>
+      <div>
+        <ng-container *ngTemplateOutlet="search_result"> </ng-container>
+      </div>
+    </div>
+
+    <ng-template #search_result>
+      <div class="sr-wrapper white-bg" *ngIf="searchQuery?.value?.length > 0">
+        <div class="pl-16 search-result">
+          {{
+            searchResult?.length === 0
+              ? "No Result for '" + searchQuery.value + "'"
+              : "Results for '" + searchQuery.value + "'"
+          }}
+        </div>
+        <ng-container *ngIf="searchResult && searchResult?.length > 0">
+          <ng-container *ngFor="let res of searchResult">
+            <a
+              [routerLink]="[res?.data?.attributes?.url.trim()]"
+              class="result-links"
+              (click)="reset()"
+            >
+              <div class="result-wrapper">
+                <div fxLayout="column" fxLayoutAlign="space-around start">
+                  <div class="title">
+                    {{ res.data.attributes.url ? "Navigate to " : "Check " }}
+                    <span class="bold">
+                      {{ res.data.attributes.url }}
+                    </span>
+                    {{ res.data.attributes.seo.pageTitle }}
+                  </div>
+                </div>
+              </div>
+            </a>
+          </ng-container>
+        </ng-container>
+        <ng-template #noresult>
+          <ng-container
+            *ngIf="searchQuery.touched && searchQuery?.value?.length > 0"
+          >
+            No Result for {{ '"' + searchQuery.value + '"' }}
+          </ng-container>
+        </ng-template>
+      </div>
+    </ng-template>
+  </section>
+</div>
